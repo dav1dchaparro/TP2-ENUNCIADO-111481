@@ -90,10 +90,13 @@ void tablero_mostrar(tablero_t *tablero, void (*imprimir_celda)(void *)) {
             size_t posicion = fila * tablero->columnas + columna;
             void *elemento = lista_primero(tablero->celdas[posicion]);
 
-            if (elemento)
+            if (imprimir_celda && elemento) {
+                imprimir_celda(elemento); 
+            } else if (elemento) {
                 printf("X"); 
-            else
+            } else {
                 printf("."); 
+            }
         }
         printf("\n"); 
     }
